@@ -1,4 +1,4 @@
-package com.example.apptest;
+package com.example.apptest.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.google.android.material.internal.ViewOverlayImpl;
+import com.example.apptest.R;
 
 public class LauncherActivity extends AppCompatActivity {
 

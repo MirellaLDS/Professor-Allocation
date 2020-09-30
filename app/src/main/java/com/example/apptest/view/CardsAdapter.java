@@ -1,4 +1,4 @@
-package com.example.apptest;
+package com.example.apptest.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,49 +9,52 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apptest.R;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
+
+class Cards {
+    public Cards(int src, String title) {
+        this.src = src;
+        this.title = title;
+    }
+    int src;
+    String title;
+}
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolder> {
 
     private Context context;
-    private LinkedList<String> listaDeReceitas;
-
+    private List<Cards> cardList;
     private final LayoutInflater mInflater;
 
-    public CardsAdapter(Context context, LinkedList listaDeReceitas) {
+    public CardsAdapter(Context context, List<Cards> cardList) {
         this.context = context;
-        this.listaDeReceitas = listaDeReceitas;
+        this.cardList = cardList;
         mInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
     public ReceitaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View itemView = mInflater.inflate(R.layout.card_iten, parent, false);
-
+        View itemView = mInflater.inflate(R.layout.card_item, parent, false);
         return new ReceitaHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReceitaHolder holder, int position) {
-
-//        Receitas receita = listaDeReceitas.get(position);
-//
-//        String titulo = receita.getName();
-//        String mensagem = receita.getDescription();
-//
-//        holder.mTitulo.setText(titulo);
-//        holder.mProfessorName.setText(mensagem);
+        Cards item = cardList.get(position);
+        holder.mProfessorName.setText(item.title);
+        holder.mProfessorImage.setImageResource(item.src);
     }
 
     @Override
     public int getItemCount() {
-        return listaDeReceitas.size();
+        return cardList.size();
     }
 
     public static final String DETALHES_KEY = "Receita";
@@ -59,11 +62,12 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolde
 
         public ImageView mProfessorImage;
         public TextView mProfessorName;
-        public ConstraintLayout mComponentePai;
+        public CardView mComponentePai;
 
         public ReceitaHolder(@NonNull View itemView) {
             super(itemView);
 
+            mProfessorImage = itemView.findViewById(R.id.img);
             mProfessorName = itemView.findViewById(R.id.professor_name);
             mComponentePai = itemView.findViewById(R.id.card_container);
 
@@ -72,7 +76,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolde
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, DetailsActivity.class);
+            Intent intent = new Intent(context, ListActivity.class);
             intent.putExtra(DETALHES_KEY, new ArrayList<>());
             context.startActivity(intent);
         }

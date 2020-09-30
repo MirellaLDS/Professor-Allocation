@@ -1,4 +1,4 @@
-package com.example.apptest;
+package com.example.apptest.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.apptest.R;
 
 public class LoginActivity extends AppCompatActivity {
 
