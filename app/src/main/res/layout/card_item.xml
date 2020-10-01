@@ -8,14 +8,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="6dp">
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="20dp"
             android:src="@drawable/branca_logo"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/professor_name"/>
 
@@ -26,6 +27,7 @@
             tools:text="Mirella Lins"
             android:gravity="center_horizontal"
             android:textColor="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/img"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
