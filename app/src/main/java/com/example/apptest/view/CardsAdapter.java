@@ -14,16 +14,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptest.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Cards {
-    public Cards(int src, String title) {
+class Cards implements Serializable {
+    public Cards(int src, String title, CardType type) {
         this.src = src;
         this.title = title;
+        this.type = type;
     }
     int src;
     String title;
+    CardType type;
+}
+
+enum CardType {
+    TEACHER(0), COURSE(1), K(2), A(3);
+
+    CardType(int index) {
+        this.index = index;
+    }
+
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
 }
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolder> {
@@ -57,7 +74,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolde
         return cardList.size();
     }
 
-    public static final String DETALHES_KEY = "Receita";
+    public static final String LIST_KEY = "type";
     class ReceitaHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView mProfessorImage;
@@ -77,7 +94,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolde
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, ListActivity.class);
-            intent.putExtra(DETALHES_KEY, new ArrayList<>());
+//            intent.putExtra(LIST_KEY, cardList.get(getLayoutPosition()));
+            intent.putExtra(ListActivity.KEY_ORIGIN, cardList.get(getLayoutPosition()));
             context.startActivity(intent);
         }
     }

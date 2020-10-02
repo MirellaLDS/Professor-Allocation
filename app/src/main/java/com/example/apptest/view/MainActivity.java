@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         List<Cards> cardList = Arrays.asList(
-                new Cards(R.drawable.ic_education, "Professores"),
-                new Cards(R.drawable.ic_learning, "Cursos"),
-                new Cards(R.drawable.ic_department, "Departamento"),
-                new Cards(R.drawable.ic_allocation, "Alocação"));
+                new Cards(R.drawable.ic_education, "Professores", CardType.TEACHER),
+                new Cards(R.drawable.ic_learning, "Cursos", CardType.COURSE),
+                new Cards(R.drawable.ic_department, "Departamento", CardType.TEACHER),
+                new Cards(R.drawable.ic_allocation, "Alocação", CardType.TEACHER));
 
         RecyclerView recyclerView = findViewById(R.id.recycle);
         //TODO: Passar lista de professores

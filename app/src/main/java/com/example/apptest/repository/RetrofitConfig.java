@@ -1,5 +1,6 @@
 package com.example.apptest.repository;
 
+import com.example.apptest.services.CourseService;
 import com.example.apptest.services.TeacherService;
 
 import retrofit2.Retrofit;
@@ -18,5 +19,8 @@ public class RetrofitConfig {
 
     public TeacherService getAllTeachers() {
         return retrofit.create(TeacherService.class);
+    }
+    public CourseService getAllCourses() {
+        return retrofit.create(CourseService.class);
     }
 }
