@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptest.R;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 class Cards implements Serializable {
@@ -43,7 +42,7 @@ enum CardType {
     }
 }
 
-public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolder> {
+public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardHolder> {
 
     private Context context;
     private List<Cards> cardList;
@@ -57,13 +56,13 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolde
 
     @NonNull
     @Override
-    public ReceitaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.card_item, parent, false);
-        return new ReceitaHolder(itemView);
+        return new CardHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReceitaHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardHolder holder, int position) {
         Cards item = cardList.get(position);
         holder.mProfessorName.setText(item.title);
         holder.mProfessorImage.setImageResource(item.src);
@@ -75,13 +74,13 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.ReceitaHolde
     }
 
     public static final String LIST_KEY = "type";
-    class ReceitaHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class CardHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView mProfessorImage;
         public TextView mProfessorName;
         public CardView mComponentePai;
 
-        public ReceitaHolder(@NonNull View itemView) {
+        public CardHolder(@NonNull View itemView) {
             super(itemView);
 
             mProfessorImage = itemView.findViewById(R.id.img);

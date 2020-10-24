@@ -2,8 +2,14 @@ package com.example.apptest.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.apptest.R;
@@ -12,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,4 +39,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(new CardsAdapter(this, cardList));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
+
+
 }

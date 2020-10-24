@@ -1,36 +1,37 @@
-<androidx.cardview.widget.CardView android:id="@+id/card_container"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_container"
     android:layout_width="150dp"
     android:layout_height="150dp"
     android:layout_margin="8dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:elevation="4dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="6dp">
-
-        <ImageView
-            android:id="@+id/img"
+         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:src="@drawable/branca_logo"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/professor_name"/>
+            android:layout_height="match_parent"
+            android:padding="6dp">
 
-        <TextView
-            android:id="@+id/professor_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Mirella Lins"
-            android:gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@id/img"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/branca_logo"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@id/professor_name"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/professor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Mirella Lins"
+                android:gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/img"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 
 
