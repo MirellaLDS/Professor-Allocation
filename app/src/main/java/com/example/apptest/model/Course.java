@@ -1,6 +1,8 @@
 package com.example.apptest.model;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
     public Course() {
     }
 
@@ -9,10 +11,12 @@ public class Course {
         this.name = name;
     }
 
+
     public int id;
     public String name;
 
 
+//    @JsonProperty("id")
     public int getId() {
         return id;
     }

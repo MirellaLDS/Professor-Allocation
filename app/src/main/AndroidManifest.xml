@@ -12,8 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBarLauncher">
-
-
+        <activity android:name=".view.CreateCourseActivity"></activity>
         <activity
             android:name=".view.LauncherActivity"
             android:noHistory="true"
@@ -24,20 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.LoginActivity"
             android:noHistory="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-
-        <activity android:name=".view.MainActivity"/>
-
-
-        <activity android:name=".view.ListActivity"
+        <activity android:name=".view.MainActivity" />
+        <activity
+            android:name=".view.ListActivity"
             android:parentActivityName=".view.MainActivity">
-                        <meta-data
-                            android:name="android.support.PARENT_ACTIVITY"
-                            android:value=".view.MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainActivity" />
         </activity>
     </application>
 

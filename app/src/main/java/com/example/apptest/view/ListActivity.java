@@ -3,8 +3,14 @@ package com.example.apptest.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.apptest.R;
 
@@ -45,10 +51,33 @@ public class ListActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                // User chose the "Settings" item, show the app settings UI...
+                Toast.makeText(this, "Create", Toast.LENGTH_LONG).show();
+                return true;
+
+            case R.id.action_delete:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                Toast.makeText(this, "Delete", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                finish();
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
 }

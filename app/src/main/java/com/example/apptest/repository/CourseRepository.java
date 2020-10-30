@@ -1,7 +1,6 @@
 package com.example.apptest.repository;
 
 import com.example.apptest.model.Course;
-import com.example.apptest.model.Teacher;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import retrofit2.Response;
 
 public class CourseRepository {
     public void getAll(final RequestResult listner) {
-        Call<List<Course>> call = new RetrofitConfig().getAllCourses().getAllCourses();
+        Call<List<Course>> call = new RetrofitConfig().getCourseService().getAllCourses();
 
         call.enqueue(new Callback<List<Course>>() {
             @Override

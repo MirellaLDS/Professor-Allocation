@@ -20,7 +20,7 @@ public class RetrofitConfig {
     public TeacherService getAllTeachers() {
         return retrofit.create(TeacherService.class);
     }
-    public CourseService getAllCourses() {
+    public CourseService getCourseService() {
         return retrofit.create(CourseService.class);
     }
 }

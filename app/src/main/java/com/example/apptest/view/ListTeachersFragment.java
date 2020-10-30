@@ -2,6 +2,9 @@ package com.example.apptest.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -24,27 +27,25 @@ import static com.example.apptest.view.CardsAdapter.LIST_KEY;
 
 public class ListTeachersFragment extends Fragment {
 
-    //    public final static String KEY_ORIGIN = "view";
-//    private Cards originView;
-
     TeacherRepository teacherRepository = null;
     ListAdapter listAdapter;
     List<Teacher> teachers = new ArrayList<>();
-
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        Bundle arguments = getArguments();
-//        if (arguments != null && arguments.containsKey(CardsAdapter.LIST_KEY)) {
-//            originView = (Cards) arguments.getSerializable(CardsAdapter.LIST_KEY);
-//        }
-//    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_list_teachers, container, false);
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -60,14 +61,6 @@ public class ListTeachersFragment extends Fragment {
 
         getAll();
     }
-//
-//    public static ListTeachersFragment newInstance(String param1) {
-//        ListTeachersFragment fragment = new ListTeachersFragment();
-//        Bundle args = new Bundle();
-//        args.putString(CardsAdapter.LIST_KEY, param1);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     private void getAll() {
         final LoaddingDialog dialog = new LoaddingDialog(getActivity());

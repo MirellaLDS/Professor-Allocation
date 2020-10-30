@@ -27,8 +27,8 @@ public class LoginActivity extends AppCompatActivity {
 
 //        InternetUtils.hasInternetConnection(this);
 
-        NotificationUtils notificationUtils = new NotificationUtils(this);
-        notificationUtils.startNotification();
+//        NotificationUtils notificationUtils = new NotificationUtils(this);
+//        notificationUtils.startNotification();
 
         Button btn = findViewById(R.id.bt_log_in);
         btn.setOnClickListener(new View.OnClickListener() {

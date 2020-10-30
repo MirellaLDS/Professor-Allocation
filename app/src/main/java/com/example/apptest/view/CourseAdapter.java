@@ -1,12 +1,14 @@
 package com.example.apptest.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptest.R;
@@ -19,6 +21,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ListHolder
     private Context context;
     private List<Course> lista;
     private final LayoutInflater mInflater;
+
+    public final static String ITEM_ID_EXTRA = "CursoID";
 
     public CourseAdapter(Context context, List<Course> lista) {
         this.context = context;
@@ -48,17 +52,25 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ListHolder
         lista = course;
     }
 
-    public class ListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ListHolder extends RecyclerView.ViewHolder {
         public TextView mUserName;
+        private ConstraintLayout parentLayout;
 
         public ListHolder(@NonNull View itemView) {
             super(itemView);
             mUserName = itemView.findViewById(R.id.teacher_name);
-        }
+            parentLayout = itemView.findViewById(R.id.parent_container);
 
-        @Override
-        public void onClick(View view) {
-
+            parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, CreateCourseActivity.class);
+                    Course course =  lista.get(getAdapterPosition());
+//            intent.putExtra(ITEM_ID_EXTRA, course);
+                    intent.putExtra(ITEM_ID_EXTRA, course);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
