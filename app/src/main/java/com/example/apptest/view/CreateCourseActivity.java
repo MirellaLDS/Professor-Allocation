@@ -34,7 +34,6 @@ public class CreateCourseActivity extends AppCompatActivity {
 
         editText.setText(curso.getName());
 
-
         btEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -29,30 +29,12 @@ public class ListCoursesFragment extends Fragment {
     private CourseRepository courseRepository = null;
     private CourseAdapter listAdapter;
     private List<Course> courses = new ArrayList<>();
-//    private Cards originView;
-
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        Bundle arguments = getArguments();
-//        if (arguments != null && arguments.containsKey(CardsAdapter.LIST_KEY)) {
-//            originView = (Cards) arguments.getSerializable(CardsAdapter.LIST_KEY);
-//        }
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_list_courses, container, false);
     }
-
-//    public static ListCoursesFragment newInstance(String param1) {
-//        ListCoursesFragment fragment = new ListCoursesFragment();
-//        Bundle args = new Bundle();
-//        args.putString(CardsAdapter.LIST_KEY, param1);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
