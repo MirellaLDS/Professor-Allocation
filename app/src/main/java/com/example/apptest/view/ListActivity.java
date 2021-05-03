@@ -64,6 +64,17 @@ public class ListActivity extends AppCompatActivity {
             case R.id.action_add:
                 // User chose the "Settings" item, show the app settings UI...
                 Toast.makeText(this, "Create", Toast.LENGTH_LONG).show();
+
+                int typeView = originView.type.getIndex();
+
+                if (CardType.COURSE.getIndex() == typeView) {
+                    Intent intent = new Intent(ListActivity.this, CreateCourseActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent();
+                    startActivity(intent);
+                }
+
                 return true;
 
             case R.id.action_delete:

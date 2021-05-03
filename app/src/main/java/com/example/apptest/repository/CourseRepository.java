@@ -9,6 +9,27 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CourseRepository {
+
+    public void createCourse(Course course, final RequestResult result) {
+        Call<Course> call = new RetrofitConfig().getCourseService().createCourse(course);
+
+        call.enqueue(new Callback<Course>() {
+            @Override
+            public void onResponse(Call<Course> call, Response<Course> response) {
+                if (response.isSuccessful()) {
+                    result.returnSuccess(response.body());
+                } else {
+                    result.returnError("Erro ao tentar salvar");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Course> call, Throwable t) {
+                result.returnError("Erro ao tentar acessar o servidor");
+            }
+        });
+    }
+
     public void getAll(final RequestResult listner) {
         Call<List<Course>> call = new RetrofitConfig().getCourseService().getAllCourses();
 

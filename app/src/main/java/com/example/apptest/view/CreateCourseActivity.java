@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.apptest.R;
 import com.example.apptest.model.Course;
+import com.example.apptest.repository.CourseRepository;
 import com.example.apptest.repository.RequestResult;
 import com.example.apptest.repository.RetrofitConfig;
 
@@ -19,60 +20,79 @@ import retrofit2.Response;
 
 public class CreateCourseActivity extends AppCompatActivity {
 
-
     private Course curso;
+    private Button btEnviar;
+    private CourseRepository courseRepository = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_course);
 
+        courseRepository = new CourseRepository();
         curso = (Course) getIntent().getSerializableExtra(CourseAdapter.ITEM_ID_EXTRA);
 
-        Button btEnviar = findViewById(R.id.bt_enviar);
+        btEnviar = findViewById(R.id.bt_enviar);
         final EditText editText = findViewById(R.id.ed_course_name);
 
-        editText.setText(curso.getName());
-
+        if (curso != null) editText.setText(curso.getName());
         btEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = editText.getText().toString().trim();
-
-                if(!curso.getName().equalsIgnoreCase(text)) {
-
-                    curso.setName(text);
-
-                    updateCourse(curso.getId(), curso, new RequestResult() {
-                        @Override
-                        public <T> void returnSuccess(T requestResult) {
-
-                        }
-
-                        @Override
-                        public void returnError(String message) {
-
-                        }
-                    });
-                }
+                openEditView(editText);
             }
         });
     }
 
-    private void updateCourse(int id, Course course, RequestResult result) {
+    private void openEditView(final EditText editText) {
+
+        String text = editText.getText().toString().trim();
+
+        if (curso == null) {
+            curso = new Course(0, text);
+            courseRepository.createCourse(curso, new RequestResult() {
+                @Override
+                public <T> void returnSuccess(T requestResult) {
+                    Toast.makeText(CreateCourseActivity.this, "Sucesso", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void returnError(String message) {
+                    Toast.makeText(CreateCourseActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
+            curso.setName(text);
+            updateCourse(curso.getId(), curso, new RequestResult() {
+                @Override
+                public <T> void returnSuccess(T requestResult) {
+                    Toast.makeText(CreateCourseActivity.this, "Sucesso", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void returnError(String message) {
+                    Toast.makeText(CreateCourseActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    private void updateCourse(int id, Course course, final RequestResult result) {
         Call<Course> call = new RetrofitConfig().getCourseService().updateCourse(id, course);
 
         call.enqueue(new Callback<Course>() {
             @Override
             public void onResponse(Call<Course> call, Response<Course> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(CreateCourseActivity.this, "Sucesso", Toast.LENGTH_LONG).show();
+                    result.returnSuccess(response.body());
+                } else {
+                    result.returnError("Erro ao tentar salvar");
                 }
             }
 
             @Override
             public void onFailure(Call<Course> call, Throwable t) {
-                Toast.makeText(CreateCourseActivity.this, "Falha", Toast.LENGTH_LONG).show();
+                result.returnError("Erro ao tentar acessar o servidor");
             }
         });
     }

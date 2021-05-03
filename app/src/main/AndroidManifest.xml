@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBarLauncher">
-        <activity android:name=".view.CreateCourseActivity"></activity>
+        <activity android:name=".view.CreateCourseActivity"
+            android:parentActivityName=".view.ListActivity"/>
         <activity
             android:name=".view.LauncherActivity"
             android:noHistory="true"

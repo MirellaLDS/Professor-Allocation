@@ -44,10 +44,13 @@ public class ListCoursesFragment extends Fragment {
         RecyclerView recyclerView = view.getRootView().findViewById(R.id.list_recycler);
         listAdapter = new CourseAdapter(getContext(), courses);
 
-
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         getAll();
     }
 

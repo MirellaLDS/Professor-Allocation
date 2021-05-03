@@ -17,7 +17,7 @@ public interface CourseService {
     @GET("course")
     Call<List<Course>> getAllCourses();
 
-    @PUT("course")
+    @PUT("course/{id}")
     Call<Course> updateCourse(@Path("id") int idCurso, @Body Course course);
 
     @POST("course")
