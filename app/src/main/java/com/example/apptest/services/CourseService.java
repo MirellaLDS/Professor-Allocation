@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -22,4 +23,7 @@ public interface CourseService {
 
     @POST("course")
     Call<Course> createCourse(@Body Course course);
+
+    @DELETE("course/{id}")
+    Call<Course> deleteCoutse(@Path("id") int idCurso);
 }

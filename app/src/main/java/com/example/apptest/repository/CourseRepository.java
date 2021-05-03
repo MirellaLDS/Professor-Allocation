@@ -30,6 +30,25 @@ public class CourseRepository {
         });
     }
 
+    public void apagarCurso(int id, final RequestResult result) {
+        Call<Course> call = new RetrofitConfig().getCourseService().deleteCoutse(id);
+        call.enqueue(new Callback<Course>() {
+            @Override
+            public void onResponse(Call<Course> call, Response<Course> response) {
+                if (response.isSuccessful()) {
+                    result.returnSuccess(response.body());
+                } else {
+                    result.returnError("Erro ao tentar salvar");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Course> call, Throwable t) {
+                result.returnError("Erro ao tentar acessar o servidor");
+            }
+        });
+    }
+
     public void getAll(final RequestResult listner) {
         Call<List<Course>> call = new RetrofitConfig().getCourseService().getAllCourses();
 

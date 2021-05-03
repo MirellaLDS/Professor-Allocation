@@ -33,13 +33,38 @@ public class CreateCourseActivity extends AppCompatActivity {
         curso = (Course) getIntent().getSerializableExtra(CourseAdapter.ITEM_ID_EXTRA);
 
         btEnviar = findViewById(R.id.bt_enviar);
+        Button btApagar = findViewById(R.id.bt_apagar);
         final EditText editText = findViewById(R.id.ed_course_name);
 
-        if (curso != null) editText.setText(curso.getName());
+        if (curso != null) {
+            editText.setText(curso.getName());
+            btApagar.setVisibility(View.VISIBLE);
+            btApagar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteCourse();
+                }
+            });
+        }
         btEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openEditView(editText);
+            }
+        });
+    }
+
+    private void deleteCourse() {
+        courseRepository.apagarCurso(curso.getId(), new RequestResult() {
+            @Override
+            public <T> void returnSuccess(T requestResult) {
+                Toast.makeText(CreateCourseActivity.this, "Item deletado com sucesso!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+            @Override
+            public void returnError(String message) {
+                Toast.makeText(CreateCourseActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -54,6 +79,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                 @Override
                 public <T> void returnSuccess(T requestResult) {
                     Toast.makeText(CreateCourseActivity.this, "Sucesso", Toast.LENGTH_LONG).show();
+                    finish();
                 }
 
                 @Override
@@ -67,6 +93,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                 @Override
                 public <T> void returnSuccess(T requestResult) {
                     Toast.makeText(CreateCourseActivity.this, "Sucesso", Toast.LENGTH_LONG).show();
+                    finish();
                 }
 
                 @Override
